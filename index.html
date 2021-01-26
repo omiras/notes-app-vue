@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Notes App</title>
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script type="module" src="scripts/app.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="header__title">Notes App</h1>
+            <h2 class="header__subtitle">Take notes and never forget</h2>
+        </div>
+    </div>
+    <div id="app">
+        <div class="actions">
+            <div class="actions__container">
+                <input id="search-text" type="text" class="input" placeholder="Filter todos">
+                <select name="" id="filter-by" class="dropdown">
+                    <option value="byEdited">Sort by last edited</option>
+                    <option value="byCreated">Sort by recently created</option>
+                    <option value="alphabetical">Sort alphabetically</option>
+                </select>
+            </div>
+        </div>
+        <div class="container">
+            <div v-for="note in notes" id="notes">
+                <div class="list-item">
+                    <h5 class="list-item__title">{{ note.title }}​​</h5>
+                </div>
+            </div>
+            <button v-show="!isAddFormVisible" @click="showAddForm" id="create-note" class="button">Create Note</button>
+        </div>
+        <div v-show="isAddFormVisible" class="container">
+            <input v-model="title" type="text" id="note-title" class="title-input" placeholder="Note title">
+            <textarea v-model="description" name="" id="note-body" class="body-input" cols="30" rows="10"
+                placeholder="Enter note text"></textarea>
+            <button @click="addNote" id="add-note" class="button button--secondary">Add note</button>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
